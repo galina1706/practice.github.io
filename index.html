@@ -6,10 +6,10 @@
     <title>Тестові Завдання QA</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
-        .container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); margin-bottom: 20px; }
+        .container { background: white; padding: 20px; border-radius: 8px; box-sha;dow: 0 0 10px rgba(0, 0, 0, 0.1); margin-bottom: 20px; }
         h2 { color: #333; }
         label { display: block; margin-top: 10px; }
-        input, select, button { padding: 8px; margin: 5px 0; width: 100%; }
+        input, select, button { padding: 8px; margin: 5px 0; width: 50%; min-width:300px; }
     </style>
 </head>
 <body>
@@ -21,14 +21,14 @@
             Відповідно до отриманого балу оцінки розподіляються так:</h3>
         <ul>
             <li>1-49 = F</li>
-            <li>50-59 = D</li>
+            <li>50-59 = E</li>
             <li>60-69 = D</li>
             <li>70-79 = C</li>
             <li>80-89 = B</li>
             <li>90-100 = A</li>
         </ul>
         <p>Введіть бал для отримання оцінки:</p>
-        <input type="number" id="examScore" min="0" max="100">
+        <input type="number" id="examScore" min="0" max="3">
         <button onclick="calculateGrade()">Отримати оцінку</button>
         <p id="gradeResult"></p>
     </div>
