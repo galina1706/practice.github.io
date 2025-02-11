@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тестові мокапи</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, select, button {
+            padding: 8px;
+            margin: 5px 0;
+            width: 100%;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+        .success {
+            color: green;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Валідація пароля -->
+    <div class="container">
+        <h2>Перевірка пароля</h2>
+        <label for="password">Введіть пароль (6-12 символів):</label>
+        <input type="password" id="password">
+        <p id="passwordMessage" class="error"></p>
+    </div>
+
+    <!-- Фільтр пошуку квартири -->
+    <div class="container">
+        <h2>Фільтр пошуку квартири</h2>
+        <label>Тип оренди:</label>
+        <select id="rentType">
+            <option>Усе</option>
+            <option>Довгострокова</option>
+            <option>Подобова</option>
+        </select>
+
+        <label>Район:</label>
+        <select id="district">
+            <option>Приморський</option>
+            <option>Центр</option>
+            <option>Молдаванка</option>
+            <option>Аркадія</option>
+        </select>
+
+        <label>Тварини:</label>
+        <select id="pets">
+            <option>Так</option>
+            <option>Ні</option>
+        </select>
+
+        <button onclick="searchApartment()">Пошук</button>
+        <p id="searchMessage"></p>
+    </div>
+
+    <!-- Введення PIN-коду -->
+    <div class="container">
+        <h2>Введення PIN-коду</h2>
+        <label for="pin">Введіть 4-значний PIN:</label>
+        <input type="password" id="pin" maxlength="4">
+        <button onclick="checkPin()">OK</button>
+        <p id="pinMessage"></p>
+    </div>
+
+    <!-- Обчислення знижки -->
+    <div class="container">
+        <h2>Розрахунок знижки</h2>
+        <label for="amount">Сума покупки ($):</label>
+        <input type="number" id="amount" min="1">
+
+        <label><input type="checkbox" id="isNewCustomer"> Новий покупець</label>
+
+        <button onclick="calculateDiscount()">Розрахувати</button>
+        <p id="discountMessage"></p>
+    </div>
+
+    <script>
+        // Валідація пароля
+        document.getElementById("password").addEventListener("input", function() {
+            let password = this.value;
+            let message = document.getElementById("passwordMessage");
+
+            if (password.length < 6) {
+                message.textContent = "Пароль занадто короткий!";
+                message.className = "error";
+            } else if (password.length > 12) {
+                message.textContent = "Пароль занадто довгий!";
+                message.className = "error";
+            } else {
+                message.textContent = "Пароль прийнято!";
+                message.className = "success";
+            }
+        });
+
+        // Фільтр пошуку квартири
+        function searchApartment() {
+            let rentType = document.getElementById("rentType").value;
+            let district = document.getElementById("district").value;
+            let pets = document.getElementById("pets").value;
+            document.getElementById("searchMessage").textContent = `Ви обрали: ${rentType}, район: ${district}, тварини: ${pets}`;
+        }
+
+        // Введення PIN-коду
+        let attempts = 3;
+        function checkPin() {
+            let pin = document.getElementById("pin").value;
+            let message = document.getElementById("pinMessage");
+
+            if (pin === "1234") {
+                message.textContent = "PIN правильний! Доступ надано.";
+                message.className = "success";
+            } else {
+                attempts--;
+                if (attempts > 0) {
+                    message.textContent = `PIN неправильний! Залишилось спроб: ${attempts}`;
+                    message.className = "error";
+                } else {
+                    message.textContent = "Картка заблокована!";
+                    message.className = "error";
+                    document.getElementById("pin").disabled = true;
+                }
+            }
+        }
+
+        // Обчислення знижки
+        function calculateDiscount() {
+            let amount = parseFloat(document.getElementById("amount").value);
+            let isNewCustomer = document.getElementById("isNewCustomer").checked;
+            let message = document.getElementById("discountMessage");
+            
+            if (isNaN(amount) || amount <= 0) {
+                message.textContent = "Введіть коректну суму!";
+                message.className = "error";
+                return;
+            }
+
+            let discount = 0;
+            if (amount > 100) {
+                discount = isNewCustomer ? 10 : 15;
+            }
+
+            if (discount > 0) {
+                message.textContent = `Ваша знижка: ${discount}%. Підсумкова сума: $${(amount * (1 - discount / 100)).toFixed(2)}`;
+                message.className = "success";
+            } else {
+                message.textContent = "Знижка не надається.";
+                message.className = "error";
+            }
+        }
+    </script>
+
+</body>
+</html>
