@@ -135,6 +135,95 @@
 </ul>
 <h3>Для діаграми переходів станів скільки переходів слід відобразити?</h3>
     </div>
+ <div class="container">
+        <h2>Завдання 7: Нова система управління взаємовідносинами з клієнтами (CRM)</h2>
+    <h3>Ваш улюблений магазин з прокату велосипедів запровадив нову систему управління взаємовідносинами з клієнтами (CRM) і попросив вас,
+        одного з найвідданіших членів, протестувати її.
+ Реалізовані функції такі:
+Будь-хто може орендувати велосипед, але члени отримують знижку 20%.
+Однак, якщо строк повернення пропущено, знижка більше не застосовується.
+Після 15 оренд члени отримують подарунок – футболку.
+Таблиця прийняття рішень, що описує реалізовані функції, виглядає наступним чином:</h3>
+   <table>
+  <tr>
+    <th>Conditions</th>
+    <th>R1</th>
+      <th>R2</th>
+      <th>R3</th>
+      <th>R4</th>
+      <th>R5</th>
+      <th>R6</th>
+      <th>R7</th>
+      <th>R8</th>
+  </tr>
+  <tr>
+    <td>Being a member</td>
+    <td>T</td>
+      <td>T</td>
+      <td>T</td>
+      <td>T</td>
+      <td>F</td>
+      <td>F</td>
+      <td>F</td>
+      <td>F</td>    
+  </tr>
+  <tr>
+    <td>Missed deadline</td>
+    <td>T</td>
+      <td>F</td>
+      <td>T</td>
+      <td>F</td>
+      <td>T</td>
+      <td>F</td>
+      <td>F</td>
+      <td>T</td> 
+  </tr>
+    <tr>
+    <td>15th rental</td>
+    <td>F</td>
+      <td>F</td>
+      <td>T</td>
+      <td>T</td>
+      <td>F</td>
+      <td>F</td>
+      <td>T</td>
+      <td>T</td> 
+  </tr>
+   <tr>
+     <td>Actions</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td> 
+  </tr>
+       <tr>
+     <td>20% discount</td>
+      <td></td>
+      <td>X</td>
+      <td></td>
+      <td>X</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td> 
+  </tr>
+        <tr>
+     <td>Gift T-Shirt</td>
+      <td></td>
+      <td></td>
+      <td>X</td>
+      <td>X</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>X</td> 
+  </tr>
+</table>  
+ </div>
 
     <script>
         function calculateGrade() {
